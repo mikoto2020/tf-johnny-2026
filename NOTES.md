@@ -1,5 +1,17 @@
 - Part 1 (API Service): Describe how you implemented the `Terraform-Parse` service. Include the framework/language you chose, how the API works, and how it translates the payload into Terraform code.
+    - I use python/flask, because it's very lightweight, and I'm familiar with Python due to I alway use Python to format or analyse text content in the past.
+    - use curl to varify response
+    - use jq to obtain real tf file from api response
 - Part 2 (Terraform): Describe the issues you found and how you approached improving them. Mention anything you think could still be enhanced.
+    - TODO
 - Part 3 (Helm): Explain the problems you encountered with the chart, how you addressed them, and how you validated your changes.
+    - TODO
 - Part 4 (System Behavior): Share your thoughts on how this setup might behave under load or in failure scenarios, and what strategies could make it more resilient in the long term.
+    - TODO
 - Part 5 (Approach & Tools): Outline the approach you took to complete the task, including any resources, tools, or methods that supported your work.
+    - VScode: main editor(plug-ing: terraform, python, jinja, etc.)
+    - Gemini AI: to provide sample code and discuss feasible options.
+    - Python/flask: create a lightweight api service.
+    - Docker(Dockerfile, docker compose): To build api service and test.
+    - curl: call api
+    - jq: parse response from api

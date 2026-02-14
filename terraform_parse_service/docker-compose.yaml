@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  terraform-parse:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: tripla-sre-assignment/tf-parse:latest
+    container_name: tf-parse-service
+    ports:
+      - "5000:5000"
+    # environment:
+    #   - FLASK_ENV=development
+    # 如果你想在修改程式碼後自動重新載入 (Hot Reload)，可以使用 volumes
+    # volumes:
+    #   - .:/app
+    restart: always
+
+# 這裡可以預留 redis 或 db，如果未來需要擴充的話
