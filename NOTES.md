@@ -1,22 +1,28 @@
 - Part 1 (API Service): Describe how you implemented the `Terraform-Parse` service. Include the framework/language you chose, how the API works, and how it translates the payload into Terraform code.
-    - I use python/flask, because it's very lightweight, and I'm familiar with Python due to I alway use Python to format or analyse text content in the past.
-    - use curl to varify response
-    - use jq to obtain real tf file from api response
+    - I use Python/Flask because it's very lightweight, and I'm familiar with Python because I always use Python to format or analyze text content in the past.
+    - Use curl to verify response.
 - Part 2 (Terraform): Describe the issues you found and how you approached improving them. Mention anything you think could still be enhanced.
-    - I use Gemini to provide me recommendation.
-    - then check terraform official docment to make sure every property is available.
-    - due to I have no AWS lab environment by my site, I use localstack/localstack to varify codes.
-    - execute terraform init to obtain module lock files
+    - I use Gemini to provide me recommendations.
+    - Then check Terraform official document to make sure every property is available.
+    - Since I have no AWS lab environment on my side, I use LocalStack to verify code.
 - Part 3 (Helm): Explain the problems you encountered with the chart, how you addressed them, and how you validated your changes.
-    - TODO
+    - Basically, revise templates with normal format.
+    - use variables instead of hardcode
+    - Test project in K8s in Docker locally.
+    - To see HPA CPU TARGETS, metrics-server needs to be installed.
 - Part 4 (System Behavior): Share your thoughts on how this setup might behave under load or in failure scenarios, and what strategies could make it more resilient in the long term.
-    - TODO
+    - Under load, the desired node of K8s cluster is 2; it might overload during traffic peaks.
+    - We can use auto-scaling cluster or just use AWS Lambda or GCP Functions to handle parsing API.
+    - To be more resilient, in my view, is to decouple appropriately, then it's easier to maintain or replace any component alone.
+    - To avoid SPOF, we can select regional services, or add a queue and worker to store and retry failed tasks
+    - If we want to pipe the result and create bucket automaticly, we might add a queue or worker to create resource sequentially.
 - Part 5 (Approach & Tools): Outline the approach you took to complete the task, including any resources, tools, or methods that supported your work.
-    - VScode: main editor(plug-ing: terraform, python, jinja, etc.)
+    - VScode: main editor(plugins: terraform, python, jinja, etc.)
     - Gemini AI: to provide sample code and discuss feasible options.
     - Python/flask: create a lightweight api service.
     - Docker(Dockerfile, docker compose): To build api service and test.
-    - curl: call api
-    - jq: parse response from api
-    - localstack/localstack for terraform codes varification
+    - curl: POST api
+    - jq: parse response from api and get appliable tf file
+    - localstack/localstack as a simulator for terraform code verification
     - terraform official module docs to ensure properties
+    - k8s metrics-server for monitor hpa object

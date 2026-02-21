@@ -3,14 +3,21 @@ kind: Deployment
 metadata:
   name: frontend
 spec:
-  replicas: 2
+  replicas: {{ .Values.replicaCount }} # 動態讀取
+  selector:
+    matchLabels:
+      app: frontend # Corrected to be consistent with Service
   template:
     metadata:
       labels:
-        app: frontend-app
+        app: frontend # Corrected to be consistent with Service
     spec:
       containers:
         - name: nginx
-          image: nginx:1.16.0
+          image: "{{ .Values.frontend.image.repository }}:{{ .Values.frontend.image.tag }}"
           ports:
             - containerPort: 80
+          resources: # For HPA
+            requests:
+              cpu: 100m
+              memory: 128Mi
