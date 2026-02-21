@@ -9,16 +9,19 @@ variable "cluster_name" {
 }
 
 variable "vpc_id" {
-  type = string
+  type    = string
   default = ""
+  description = "The VPC ID where EKS will be deployed"
 }
 
 variable "subnet_ids" {
-  type = list(string)
+  type    = list(string)
   default = []
+  description = "List of subnet IDs for EKS nodes"
 }
 
 variable "environment" {
   type    = string
   default = "dev"
+  description = "Environment name (e.g., dev, prod)"
 }

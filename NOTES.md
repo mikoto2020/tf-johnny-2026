@@ -3,7 +3,10 @@
     - use curl to varify response
     - use jq to obtain real tf file from api response
 - Part 2 (Terraform): Describe the issues you found and how you approached improving them. Mention anything you think could still be enhanced.
-    - TODO
+    - I use Gemini to provide me recommendation.
+    - then check terraform official docment to make sure every property is available.
+    - due to I have no AWS lab environment by my site, I use localstack/localstack to varify codes.
+    - execute terraform init to obtain module lock files
 - Part 3 (Helm): Explain the problems you encountered with the chart, how you addressed them, and how you validated your changes.
     - TODO
 - Part 4 (System Behavior): Share your thoughts on how this setup might behave under load or in failure scenarios, and what strategies could make it more resilient in the long term.
@@ -15,3 +18,5 @@
     - Docker(Dockerfile, docker compose): To build api service and test.
     - curl: call api
     - jq: parse response from api
+    - localstack/localstack for terraform codes varification
+    - terraform official module docs to ensure properties
