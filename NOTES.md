@@ -7,7 +7,7 @@
     - Since I have no AWS lab environment on my side, I use LocalStack to verify code.
 - Part 3 (Helm): Explain the problems you encountered with the chart, how you addressed them, and how you validated your changes.
     - Basically, revise templates with normal format.
-    - use variables instead of hardcode
+    - use variables instead of hardcoding
     - Test project in K8s in Docker locally.
     - To see HPA CPU TARGETS, metrics-server needs to be installed.
 - Part 4 (System Behavior): Share your thoughts on how this setup might behave under load or in failure scenarios, and what strategies could make it more resilient in the long term.
@@ -15,14 +15,14 @@
     - We can use auto-scaling cluster or just use AWS Lambda or GCP Functions to handle parsing API.
     - To be more resilient, in my view, is to decouple appropriately, then it's easier to maintain or replace any component alone.
     - To avoid SPOF, we can select regional services, or add a queue and worker to store and retry failed tasks
-    - If we want to pipe the result and create bucket automaticly, we might add a queue or worker to create resource sequentially.
+    - If we want to pipe the result and create bucket automatically, we might add a queue or worker to create resource sequentially.
 - Part 5 (Approach & Tools): Outline the approach you took to complete the task, including any resources, tools, or methods that supported your work.
-    - VScode: main editor(plugins: terraform, python, jinja, etc.)
+    - VS Code: main editor(plugins: terraform, python, jinja, etc.)
     - Gemini AI: to provide sample code and discuss feasible options.
     - Python/flask: create a lightweight api service.
     - Docker(Dockerfile, docker compose): To build api service and test.
     - curl: POST api
-    - jq: parse response from api and get appliable tf file
+    - jq: parse response from api and get applicable tf file
     - localstack/localstack as a simulator for terraform code verification
     - terraform official module docs to ensure properties
     - k8s metrics-server for monitor hpa object
