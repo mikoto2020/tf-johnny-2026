@@ -17,10 +17,6 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = var.aws_region
-}
-
 # EKS module ref: https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/19.0.0
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
