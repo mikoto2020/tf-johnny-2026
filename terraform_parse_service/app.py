@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, render_template_string
 
 app = Flask(__name__)
 
-# 將模板存放在記憶體變數中，避免讀取本地檔案的 I/O 負擔
+# Store templates in memory variables to avoid the I/O burden of reading local files
 TF_TEMPLATE = """
 provider "aws" {
   region = "{{ region }}"
@@ -25,13 +25,13 @@ def parse_terraform():
         if not data:
             return jsonify({"error": "Invalid JSON"}), 400
 
-        # 設定預設值
+        # Set default value
         context = {
             "region": data.get('region', 'us-east-1'),
             "bucket_name": data.get('bucket_name', 'my-default-bucket')
         }
 
-        # 直接從記憶體渲染模板
+        # Render templates directly from memory
         terraform_content = render_template_string(TF_TEMPLATE, **context)
 
         return jsonify({
@@ -42,5 +42,5 @@ def parse_terraform():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 if __name__ == '__main__':
-    # SRE 提醒：生產環境建議使用 gunicorn，本地測試則用 Flask debug mode
+    # SRE reminder: It is recommended to use gunicorn for production environment and Flask debug mode for local testing.
     app.run(host='0.0.0.0', port=5000)

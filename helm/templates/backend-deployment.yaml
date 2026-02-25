@@ -17,7 +17,7 @@ spec:
           image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
           args:
             - "-text=hello"
-          resources: # 修正 HPA 抓不到指標的問題
+          resources: # Fix the problem that HPA cannot catch indicators
             requests:
               cpu: 100m
               memory: 128Mi
