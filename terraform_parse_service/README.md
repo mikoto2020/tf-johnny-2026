@@ -23,8 +23,8 @@ ports:
 ```
 curl -X POST http://localhost:5000/parse \
   -H "Content-Type: application/json" \
-  -d '{ "region": "eu-west-1", "bucket_name": "tripla-bucket" }' \
-  | jq -r '.terraform_content' > output.tf
+  -d '{"payload":{"properties":{"aws-region":"eu-west-1","acl":"private","bucket-name":"tripla-bucket"}}} ' \
+  | jq -r '.terraform_content'
 
 # output.tf
 provider "aws" {

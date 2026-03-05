@@ -14,7 +14,7 @@ resource "aws_s3_bucket" "this" {
 
 resource "aws_s3_bucket_acl" "this" {
   bucket = aws_s3_bucket.this.id
-  acl    = "private"
+  acl    = "{{ acl }}"
 }
 """
 
@@ -24,11 +24,14 @@ def parse_terraform():
         data = request.get_json()
         if not data:
             return jsonify({"error": "Invalid JSON"}), 400
+        # extract properties
+        properties = data.get('payload').get('properties')
 
         # Set default value
         context = {
-            "region": data.get('region', 'us-east-1'),
-            "bucket_name": data.get('bucket_name', 'my-default-bucket')
+            "region": properties.get('aws-region', 'us-east-1'),
+            "bucket_name": properties.get('bucket-name', 'my-default-bucket'),
+            "acl": properties.get('acl', 'private')
         }
 
         # Render templates directly from memory
